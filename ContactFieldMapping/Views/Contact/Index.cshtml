@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ContactFieldMapping.DAL.Model.Contact>
+
+<div class="d-flex justify-content-between">
+    <h2>Loaded Contacts</h2>
+
+    <a asp-action="LoadData" class="btn btn-outline-primary">Load Data</a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Is Active</th>
+            <th>Joining Date</th>
+            <th>Member Type</th>
+            <th>Job Title</th>
+            <th>Is Member</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+            <tr>
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.Email</td>
+                <td>@contact.IsActive</td>
+                <td>@contact.JoiningDate.ToShortDateString()</td>
+                <td>@contact.MemberType</td>
+                <td>@contact.JobTitle</td>
+                <td>@contact.IsMember</td>
+            </tr>
+        }
+    </tbody>
+</table>

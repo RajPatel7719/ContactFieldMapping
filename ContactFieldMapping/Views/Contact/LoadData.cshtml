@@ -1,0 +1,180 @@
+﻿@model ContactFieldMapping.BAL.ViewModel.MappingViewModel
+
+@{
+    ViewData["Title"] = "Field Mapping";
+}
+
+<h2>Contact Field Mapping</h2>
+
+<form asp-action="LoadData" method="post" class="col-6">
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <p class="align-items-center alert-danger">@TempData["ErrorMessage"]</p>
+    }
+
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="FirstNameField">Map First Name<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="FirstNameField" class="form-control" name="SelectedFirstNameField" asp-for="SelectedFirstNameField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedFirstNameField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="LastNameField">Map Last Name<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="LastNameField" class="form-control" name="SelectedLastNameField" asp-for="SelectedLastNameField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedLastNameField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="EmailField">Map Email<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="EmailField" class="form-control" name="SelectedEmailField" asp-for="SelectedEmailField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedEmailField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="IsActiveField">Map Is Active<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="IsActiveField" class="form-control" name="SelectedIsActiveField" asp-for="SelectedIsActiveField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedIsActiveField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="JoiningDateField" class="form-label">Map Joining Date<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="JoiningDateField" class="form-control" name="SelectedJoiningDateField" asp-for="SelectedJoiningDateField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedJoiningDateField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="MemberTypeField">Map Member Type<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="MemberTypeField" class="form-control" name="SelectedMemberTypeField" asp-for="SelectedMemberTypeField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedMemberTypeField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="JobTitleField">Map Job Title<span class="text-danger">*</span>:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="JobTitleField" class="form-control" name="SelectedJobTitleField" asp-for="SelectedJobTitleField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+                <span asp-validation-for="SelectedJobTitleField" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label asp-for="CutoffDate" class="form-label"></label>
+            </div>
+            <div class="col-md-8">
+                <input type="date" id="CutoffDate" class="form-control" name="CutoffDate" asp-for="CutoffDate" />
+            </div>
+        </div>
+
+        <h3>Transformation</h3>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="TransformationField">Field to Transform:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="TransformationField" class="form-control" name="TransformationField" asp-for="TransformationField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="TransformationType">Transformation Type:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="TransformationType" class="form-control" name="TransformationType" asp-for="TransformationType">
+                    <option value="0">--Select Type--</option>
+                    <option value="ToBoolean">To Boolean</option>
+                    <option value="ToDateTime">To DateTime</option>
+                    <option value="ToUpperCase">To UpperCase</option>
+                    <option value="ToLowerCase">To LowerCase</option>
+                </select>
+            </div>
+
+        </div>
+
+        <h3>Criteria</h3>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="CriteriaField">Field for Criteria:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="CriteriaField" class="form-control" name="CriteriaField" asp-for="CriteriaField" asp-items="@(new SelectList(Model.ApiFields))">
+                    <option value="">--Select Field--</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="CriteriaOperator">Operator:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="CriteriaOperator" class="form-control" name="CriteriaOperator" asp-for="CriteriaOperator">
+                    <option value="0">--Select Operator--</option>
+                    <option value="Equals">Equals</option>
+                    <option value="NotEquals">Not Equals</option>
+                    <option value="GreaterThan">Greater Than</option>
+                    <option value="LessThan">Less Than</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="CriteriaValue">Value:</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" id="CriteriaValue" class="form-control" name="CriteriaValue" asp-for="CriteriaValue" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Load Data" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
